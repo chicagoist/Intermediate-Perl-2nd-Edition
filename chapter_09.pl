@@ -34,7 +34,6 @@ my @BB = ("f" ... "z");
 
 
 print "\nOne way\n";
-
 sub one_way
 {
 
