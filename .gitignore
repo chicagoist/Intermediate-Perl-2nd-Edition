@@ -36,3 +36,5 @@ inc/
 /HIDE/
 /.idea
 /LOGS/
+/HIDE/API_connect.pl
+/HIDE/API_connect_CloudStorageConfig.pm
