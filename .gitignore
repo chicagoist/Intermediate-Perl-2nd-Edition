@@ -38,3 +38,4 @@ inc/
 /LOGS/
 /HIDE/API_connect.pl
 /HIDE/API_connect_CloudStorageConfig.pm
+/HIDE/LOGS
