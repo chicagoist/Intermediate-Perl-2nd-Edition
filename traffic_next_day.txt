@@ -1,0 +1,7 @@
+professor.hut gilligan.crew.hut 250
+professor.hut lovey.howell.hut 10
+thurston.howell.hut lovey.howell.hut 250
+professor.hut lovey.howell.hut 50
+professor.hut laser3.copyroom.hut 924
+ginger.girl.hut professor.hut 218
+ginger.girl.hut maryann.girl.hut 9
