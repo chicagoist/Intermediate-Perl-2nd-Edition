@@ -172,3 +172,49 @@ print "\n\n\t# Многоуровневая сортировка на основ
 #                 СРАВНЕНИЕ ПАР ЭЛЕМЕНТОВ $a > [2] И $b > [2] ПО ТРЕТЬЕМУ КРИТЕРИЮ }
 #                 map [$_, НЕКОТОРАЯ ФУНКЦИЯ ОТ $_, ЕЩЕ ОДНА ФУНКЦИЯ, И ЕЩЕ ОДНА],
 #                 @input_data;
+
+
+print "\n\n\t# Данные с рекурсивной организацией\n\n";
+
+# For example, a recursive subroutine handling the factorial function, which is one of the simplest
+# recursive functions, might look like:
+sub factorial
+{
+    my $n = shift;
+    if ($n <= 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return $n * factorial($n - 1);
+    }
+}
+
+print factorial(5);
+
+sub data_for_path {
+    my $path = shift;
+if (-f $path or -l $path) {  # files or symbolic links
+    return undef;
+}
+    if (-d $path)
+    {
+        my %directory;
+        opendir PATH, $path or die "Cannot opendir $path: $!";
+        my @names2 = readdir PATH;
+        closedir PATH;
+        for my $name (@names2)
+        {
+            next if $name eq '.' or $name eq '..';
+            $directory{$name} = data_for_path("$path/$name");
+        }
+        return \%directory;
+    }
+    warn "$path is neither a file nor a directory\n";
+    return undef;
+}
+
+print Dumper (data_for_path('.'));
+
+print "\n\n\t# Отображение данных с рекурсивной организацией\n\n";
