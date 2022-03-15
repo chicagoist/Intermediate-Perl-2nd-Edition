@@ -9,9 +9,9 @@ use 5.10.0;
 #= BEGIN{@ARGV=map Encode::decode(#\$_,1),@ARGV;}
 # BEGIN{@ARGV = map decode_utf8(#\$_, 1), @ARGV;}
 # use open qw(:std :encoding(UTF-8));
-# use utf8::all 'GLOBAL';
-# use Encode::Locale;
-# use Encode;
+ use utf8::all 'GLOBAL';
+ # use Encode::Locale;
+ # use Encode;
 # use diagnostics;
 
 
@@ -24,6 +24,7 @@ binmode(STDOUT, ':utf8');
 use Data::Dumper;
 use Bundle::Camelcade;# for Intellij IDEA
 use YAML;
+use DDP;
 
 print "\n\n\t# ПРАКТИЧЕСКИЕ ПРИЕМЫ РАБОТЫ СО ССЫЛКАМИ\n\n";
 
@@ -76,6 +77,62 @@ print "\n\n";
 print "\@A : @A\n";
 print "\@B : @B\n";
 print "\@AA : @AA\n";
-print "\@BB : @BB\n";
+print "\@BB : @BB\n\n";
 
 
+#my @input = qw(Джиллиган Шкипер Профессор Джинджер Мэри_Энн);
+my @input = qw(Джиллиган Торстон Шкипер Профессор Ловей Джинджер Мэри_Энн);
+my @sorted_positions = sort { $input[$a] cmp $input[$b] } (0..$#input);
+my @ranks;
+@ranks[@sorted_positions] = (0..$#sorted_positions);
+#@ranks[@sorted_positions] = (1..@sorted_positions);
+
+# for (0..$#ranks) {
+#     print "Имя $input[$_] переместится в позицию $ranks[$_]\n";
+# }
+
+print '<@sorted_positions> = ' . "@sorted_positions\n";
+print '<@input> = ' . "@input\n";
+
+print "\@input:\n";
+p @input;
+
+print "\@sorted_positions:\n";
+p @sorted_positions;
+
+
+my @test_rank = (1..@sorted_positions);
+print '@test_rank'."\n";
+p @test_rank;
+
+
+print '\@ranks[@sorted_positions] 1:'."\n";
+p @ranks[@sorted_positions];
+
+print '\@ranks[@sorted_positions] 2:'."\n";
+p @ranks[@sorted_positions];
+
+print'@ranks'."\n";
+p @ranks;
+
+print '<@ranks[@sorted_positions]> = '. "@ranks[@sorted_positions]\n";
+print '<@ranks> = '. "@ranks\n\n";
+
+print  sort { $a <=> $b } 1, 2, 4, 8, 16, 32;
+say"\n";
+my @castaways = qw(Джиллиган Шкипер Профессор Джинджер Мэри_Энн Торстон Ловей);
+
+sub ask_monkey_about {
+    my($name) = shift @_;
+    for (0..$#castaways) {
+        if ($castaways[$_] eq $name ) {
+            return $_;
+        }
+    }
+}
+
+my @names_and_pineapples = map {[ $_, ask_monkey_about($_) ]} @castaways;
+
+my @sorted_names_and_pineapples = sort {$b->[1] <=> $a->[1];} @names_and_pineapples;
+
+p @sorted_names_and_pineapples;
