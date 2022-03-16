@@ -131,7 +131,16 @@ sub ask_monkey_about {
     }
 }
 
-my @names_and_pineapples = map {[ $_, ask_monkey_about($_) ]} @castaways;
+my $ask_monkey_about = sub {
+    my($name) = shift @_;
+    for (0..$#castaways) {
+        if ($castaways[$_] eq $name ) {
+            return $_;
+        }
+    }
+};
+
+my @names_and_pineapples = map {[ $_, $ask_monkey_about->($_) ]} @castaways;
 p @names_and_pineapples;
 
 my @sorted_names_and_pineapples = sort {$b->[1] <=> $a->[1];} @names_and_pineapples;
