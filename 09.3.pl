@@ -57,14 +57,11 @@ sub read_file
     }
     close($fh);
 
-    map {
-        foreach my $name (sort keys %sorted)
-        {
-            push @result, $name;
-        }
-    };
-
-    map{ $sorted{$_} = 1 }, @words;
+    map { $sorted{$_} = 1 } @words;
+    foreach my $name (sort keys %sorted)
+    {
+        push @result, $name;
+    }
 
     p @result;
 }
