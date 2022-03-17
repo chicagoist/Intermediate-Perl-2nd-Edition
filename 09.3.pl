@@ -65,6 +65,18 @@ sub read_file
     }
 
     p @result;
+
+    my @dictionary_sorted =
+    map $_->[0],
+    sort { $a->[1] cmp $b->[1] }
+    map {
+    my $string = $_;
+    $string =~ s/\P{Letter}//g;  # remove nonletters
+    $string = fc( $string );     # a proper case fold
+    [ $_, $string ];
+    } @words;
+
+    p @dictionary_sorted;
 }
 
 read_file();
