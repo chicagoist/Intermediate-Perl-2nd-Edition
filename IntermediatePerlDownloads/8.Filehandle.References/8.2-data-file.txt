@@ -99,5 +99,3 @@ Professor: 4 coconuts
 Ginger: 5 flowers
 Professor: 4 crabs
 Mary-Ann: 1 crab
-3. Mary-Ann: 1 crab
-Mary-Ann 11: crab
