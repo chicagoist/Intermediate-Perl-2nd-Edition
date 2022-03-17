@@ -71,7 +71,7 @@ sub read_file
     sort { $a->[1] cmp $b->[1] }
     map {
     my $string = $_;
-    $string =~ s/\P{Letter}//g;  # remove nonletters
+    $string =~ s/\P{Letter}//g;  # remove non letters
     $string = fc( $string );     # a proper case fold
     [ $_, $string ];
     } @words;
