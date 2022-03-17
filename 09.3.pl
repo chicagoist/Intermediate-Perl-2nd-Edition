@@ -40,7 +40,7 @@ use Time::Local;
 use DDP;
 use Benchmark;
 
-sub read_file
+sub read_directorys
 {
     my @words;
     my %sorted;
@@ -79,7 +79,7 @@ sub read_file
     p @dictionary_sorted;
 }
 
-read_file();
+read_directorys();
 
 =begin text
 
