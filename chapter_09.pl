@@ -236,7 +236,8 @@ sub dump_data_for_path
     my $path = shift;
     my $data = shift;
 
-    if (not defined $data)
+    #if (not defined $data)
+    unless (defined $data)
     {
         # plain file
         print "$path\n";
