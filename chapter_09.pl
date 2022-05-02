@@ -205,50 +205,65 @@ sub factorial
 
 print factorial(5);
 
-sub data_for_path {
-    my $path = shift;
-if (-f $path or -l $path) {  # files or symbolic links
-    return undef;
-}
-    if (-d $path)
-    {
-        my %directory;
-        opendir PATH, $path or die "Cannot opendir $path: $!";
-        my @names2 = readdir PATH;
-        closedir PATH;
-        for my $name (@names2)
-        {
-            next if $name eq '.' or $name eq '..';
-            $directory{$name} = data_for_path("$path/$name");
-        }
-        return \%directory;
-    }
-    warn "$path is neither a file nor a directory\n";
-    return undef;
-}
-
-print Dumper (data_for_path('.'));
+#print Dumper (data_for_path('.'));
 
 print "\n\n\t# Отображение данных с рекурсивной организацией\n\n";
 
-sub dump_data_for_path
-{
-    my $path = shift;
-    my $data = shift;
+#
+# sub data_for_path {
+#     my $path = shift;
+#     if (-f $path or -l $path) {  # files or symbolic links
+#         return undef;
+#     }
+#     if (-d $path)
+#     {
+#         my %directory;
+#         opendir PATH, $path or die "Cannot opendir $path: $!";
+#         my @names2 = readdir PATH;
+#         closedir PATH;
+#         for my $name (@names2)
+#         {
+#             next if $name eq '.' or $name eq '..';
+#             $directory{$name} = data_for_path("$path/$name");
+#         }
+#         return \%directory;
+#     }
+#     warn "$path is neither a file nor a directory\n";
+#     return undef;
+# }
+#
+#
+#
+# sub dump_data_for_path
+# {
+#     my $path = shift;
+#     my $data = shift;
+#
+#     #if (not defined $data)
+#     unless (defined $data)
+#     {
+#         # plain file
+#         print "$path\n";
+#         return;
+#     }
+#
+#     my %directory = %$data;
+#
+#     foreach (sort keys %directory)
+#     {
+#         dump_data_for_path("$path/$_", $directory{$_});
+#     }
+# }
+# die $@ if $@;
 
-    #if (not defined $data)
-    unless (defined $data)
-    {
-        # plain file
-        print "$path\n";
-        return;
-    }
 
-    my %directory = %$data;
+#do './fortest.pl';
+#use lib qw(.);
+use FindBin qw($Bin);
+use lib $Bin;
 
-    foreach (sort keys %{$data})
-    {
-        dump_data_for_path("$path/$_", $directory{$_});
-    }
-}
+require 'fortest.pl';
+
+
+
 dump_data_for_path('.', data_for_path('.'));
