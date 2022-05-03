@@ -95,6 +95,7 @@ foreach (keys %animal)
 }
 
 { package Cow;
+my $cow = "Cow var";
 sub sound
 { 'му у у у' };
 sub speaks
@@ -104,8 +105,17 @@ sub speaks
     print "$class: ", $class->sound, "!\n";
 }
 
+sub get_var {
+    return $cow;
+}
+
+
 Cow->speaks;
 }
 Cow->speaks;
 Cow->speak;
 
+use lib qw(.);
+use Navigation;
+
+print @Navigation::homeport;
