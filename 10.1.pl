@@ -58,6 +58,12 @@ print ch10::Date_ch10::date_10();
 
 .ch10/Date.pm
 
+use FindBin qw($Bin);
+use lib "$Bin/ch10"; # в подкаталоге
+use Date_ch10;
+
+print "Name of day: ".ch10::Date_ch10::number_to_day_name(7)."\n";
+print "Name of month: ".ch10::Date_ch10::number_to_mon_name(1)."\n";
 
 =end text
 

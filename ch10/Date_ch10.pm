@@ -49,7 +49,11 @@ sub number_to_mon_name {
     return $month[$num];
 }
 
-
+sub today {
+    my($sec, $min, $hour, $mday, $mon, $year, $wday) = localtime;
+    my $today = sprintf("Сегодня %s, %s %d, %d", number_to_day_name($wday), number_to_mon_name($mon), $mday, 1900+$year);
+    return $today;
+}
 
 my $date_today = localtime()."\n";
 sub date_10 {
