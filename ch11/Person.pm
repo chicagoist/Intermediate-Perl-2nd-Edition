@@ -1,6 +1,6 @@
 use v5.10;
 
-package Animal {
+package Person {
     our $VERSION = '0.01';
     use parent qw(LivingCreature);
 
@@ -12,14 +12,9 @@ package Animal {
     binmode(STDOUT, ':utf8');
     use Bundle::Camelcade;# for Intellij IDEA
 
-    sub speak {
-        my $class = shift;
-        die "animals can't talk!" if @_;
-        $class->SUPER::speak;
-    }
 
     sub sound {
-        die "all Animals should define a sound";
+        return "bla-bla-bla";
     }
 
 

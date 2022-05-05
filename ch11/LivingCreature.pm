@@ -1,8 +1,7 @@
 use v5.10;
 
-package Animal {
+package LivingCreature {
     our $VERSION = '0.01';
-    use parent qw(LivingCreature);
 
     use utf8::all 'GLOBAL';
     use strict;
@@ -14,12 +13,16 @@ package Animal {
 
     sub speak {
         my $class = shift;
-        die "animals can't talk!" if @_;
-        $class->SUPER::speak;
+        if (@_) {
+            print "$class speak: "."@_\n";
+        }
+        else {
+            print "$class speak: ".$class->sound."\n";
+        }
     }
 
     sub sound {
-        die "all Animals should define a sound";
+        die 'You have to define sound() in a subclass'
     }
 
 
