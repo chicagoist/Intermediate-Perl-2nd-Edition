@@ -70,50 +70,50 @@ print "\n\n";
 
 # Class
 
-sub Cow::speak
-{
-    my $class = shift;
-    print "$class: му у у!\n";
-}
-
-sub Horse::speak
-{
-    my $class = shift;
-    print "$class: иго го!\n";
-}
-
-sub Sheep::speak
-{
-    my $class = shift;
-    print "$class: бе е е е!\n";
-}
-
-foreach (keys %animal)
-{
-
-    eval { $_->speak($_); }
-}
-
-{ package Cow;
-my $cow = "Cow var";
-sub sound
-{ 'му у у у' };
-sub speaks
-{
-
-    my $class = shift;
-    print "$class: ", $class->sound, "!\n";
-}
-
-sub get_var {
-    return $cow;
-}
-
-
-Cow->speaks;
-}
-Cow->speaks;
-Cow->speak;
+# sub Cow::speak
+# {
+#     my $class = shift;
+#     print "$class: му у у!\n";
+# }
+#
+# sub Horse::speak
+# {
+#     my $class = shift;
+#     print "$class: иго го!\n";
+# }
+#
+# sub Sheep::speak
+# {
+#     my $class = shift;
+#     print "$class: бе е е е!\n";
+# }
+#
+# foreach (keys %animal)
+# {
+#
+#     eval { $_->speak($_); }
+# }
+#
+# { package Cow;
+# my $cow = "Cow var";
+# sub sound
+# { 'му у у у' };
+# sub speaks
+# {
+#
+#     my $class = shift;
+#     print "$class: ", $class->sound, "!\n";
+# }
+#
+# sub get_var {
+#     return $cow;
+# }
+#
+#
+# Cow->speaks;
+# }
+# Cow->speaks;
+# Cow->speak;
 
 use lib qw(.);
 use Navigation;
