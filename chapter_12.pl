@@ -57,7 +57,7 @@ print "\n\n# Доступ к данным экземпляра \n\n";
 
 print $tv_horse->name, ": ", $tv_horse->sound, "\n";
 #print Horse::name($tv_horse)."\n";
-print $tv_horse->speak("No!"). "\n";
+print $tv_horse->speak. "\n";
 
 print Horse->name, "\n"; # выведет "Horse без имени\n"
 #print Horse::name('Horse'), "\n"; # выведет "Horse без имени\n"
@@ -76,3 +76,24 @@ Sheep->eat('траву');
 # прикладной интерфейс определяет способы использования и сопровождения объекта и порожденных от него классов.
 # Не торопитесь зафиксировать интерфейс, пока не разберетесь до конца, как вы (или другие) будете
 # использовать объект.
+
+print "\n\n# Более сложные экземпляры \n\n";
+
+# Попробуем создать овцу, которая будет иметь не только кличку, но ицвет:
+
+my $lost = bless { Name => 'Бо', Color => 'белый' }, 'Sheep';
+$tv_horse = Horse->named('мистер Эд');
+print $tv_horse->color."\n";
+$tv_horse->set_color('черный с белыми пятнами');
+
+print $lost->{Name}."\n";
+print $lost->name."\n";
+print $lost->{Color}."\n";
+print $tv_horse->default_color."\n";
+print $tv_horse->color."\n";
+print $tv_horse->{Color}."\n";
+print $tv_horse->name."\n";
+
+print "\n\n# Что возвращать \n\n";
+
+

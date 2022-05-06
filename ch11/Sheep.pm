@@ -21,4 +21,9 @@ sub speak {
     $self->SUPER::speak();
 }
 
+## в классе Sheep
+sub default_color {
+    'белый';
+}
+
 1;

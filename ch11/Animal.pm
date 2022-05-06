@@ -27,19 +27,21 @@ package Animal {
 
     sub name {
         my $either = shift;
-        ref $either ? $$either                # it's an instance, return name
+        ref $either ? $either->{Name}                # it's an instance, return name
             : "$either без имени";           # it's a class, return generic
     }
 
     sub named {
         my $class = shift;
         my $name = shift;
-        bless \$name, $class;
+        my $self = { Name => $name, Color => $class->default_color };
+        bless $self, $class;
     }
 
     sub speak {
         my $either = shift;
-        print $either->name, ' goes ', $either->sound, "\n";
+        #say $either->sound;
+        $either->name. ' goes '. $either->sound;
     }
 
     sub eat {
@@ -50,6 +52,22 @@ package Animal {
 
     sub sound {
         die "all Animals should define a sound";
+    }
+
+    ## в классе Animal
+    sub default_color {
+        'коричневый';
+    }
+
+    ## в классе Animal
+    sub color {
+        my $self = shift;
+        $self->{Color};
+    }
+
+    sub set_color {
+        my $self = shift;
+        $self->{Color} = shift;
     }
 
 
