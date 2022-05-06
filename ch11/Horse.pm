@@ -17,10 +17,16 @@ package Horse {
         "иго го!!";
     }
 
-    sub speak {
-        my $self = shift;
-        $self->SUPER::speak();
-    }
+    # sub name {
+    #     my $self = shift;
+    #     $$self;
+    # }
+
+
+    # sub speak {
+    #     my $self = shift;
+    #     $self->SUPER::speak();
+    # }
 
 
     1;

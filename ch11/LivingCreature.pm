@@ -14,10 +14,11 @@ package LivingCreature {
     sub speak {
         my $class = shift;
         if (@_) {
-            print "$class speak: "."@_\n";
+            $class->name." speak: "."@_\n";
         }
         else {
-            print "$class speak: ".$class->sound."\n";
+            $class->name." speak: ".$class->sound;
+
         }
     }
 

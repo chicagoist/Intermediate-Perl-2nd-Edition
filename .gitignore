@@ -41,3 +41,4 @@ inc/
 /HIDE/LOGS
 /_Deparsed_XSubs.pm
 /.gitignore
+/fortest.pl

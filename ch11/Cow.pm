@@ -18,10 +18,10 @@ package Cow {
         "му у у у!!";
     }
 
-    override speak => sub {
-
-        super();
-    };
+    # override speak => sub {
+    #
+    #     super();
+    # };
 
     # sub speak {
     #     my $self = shift;
