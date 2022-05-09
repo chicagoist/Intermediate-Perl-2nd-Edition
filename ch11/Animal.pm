@@ -68,7 +68,22 @@ package Animal {
     sub set_color {
         my $self = shift;
         $self->{Color} = shift;
+        $self;
     }
+
+    sub set_age {
+        my $self = shift;
+        $self->{Age} = shift;
+        $self;
+    }
+
+    sub set_height {
+        my $self = shift;
+        $self->{Height} = shift;
+        $self;
+    }
+
+
 
 
     1;

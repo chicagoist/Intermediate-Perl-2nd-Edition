@@ -82,7 +82,11 @@ print "\n\n# Более сложные экземпляры \n\n";
 # Попробуем создать овцу, которая будет иметь не только кличку, но ицвет:
 
 my $lost = bless { Name => 'Бо', Color => 'белый' }, 'Sheep';
-$tv_horse = Horse->named('мистер Эд');
+#$tv_horse = Horse->named('мистер Эд');
+$tv_horse = Horse->named('мистер Эд')->set_color('серый')->set_age(4)->set_height('17 пядей');
+
+
+
 print $tv_horse->color."\n";
 $tv_horse->set_color('черный с белыми пятнами');
 
@@ -93,6 +97,7 @@ print $tv_horse->default_color."\n";
 print $tv_horse->color."\n";
 print $tv_horse->{Color}."\n";
 print $tv_horse->name."\n";
+print $tv_horse->{Age}."\n";
 
 print "\n\n# Что возвращать \n\n";
 
