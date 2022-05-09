@@ -12,6 +12,10 @@ package Horse {
     use Bundle::Camelcade;# for Intellij IDEA
 
 
+    sub set_name {
+        my $self = shift;
+        $self->{Name} = shift;
+    }
 
     sub sound {
         "иго го!!";

@@ -62,7 +62,7 @@ package Animal {
     ## в классе Animal
     sub color {
         my $self = shift;
-        $self->{Color};
+       ref $self ? $self->{Color} : $self->default_color;
     }
 
     sub set_color {
