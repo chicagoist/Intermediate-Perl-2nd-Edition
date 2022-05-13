@@ -40,5 +40,5 @@ inc/
 /HIDE/API_connect_CloudStorageConfig.pm
 /HIDE/LOGS
 /_Deparsed_XSubs.pm
-/.gitignore
-/fortest.pl
+/standings.dir
+/standings.pag

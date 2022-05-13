@@ -32,6 +32,14 @@ package Horse {
     #     $self->SUPER::speak();
     # }
 
+    ## в классе Animal
+    sub DESTROY {
+        my $self = shift;
+        #print '[объект ', $self->name, " уничтожен.]\n";
+        #$self->SUPER::DESTROY;
+        $self->SUPER::DESTROY if $self->can( 'SUPER::DESTROY' );
+        #print "[", $self->name, " отправлен на фабрику для переработки.]\n";
+    }
 
     1;
 }

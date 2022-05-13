@@ -3,7 +3,11 @@ use v5.10;
 package Animal {
     our $VERSION = '0.01';
     use parent qw(LivingCreature);
+    use Scalar::Util qw(weaken);
+    use Carp qw(croak);
 
+
+    use File::Temp qw(tempfile);
     use utf8::all 'GLOBAL';
     use strict;
     use warnings FATAL => 'all';
@@ -31,11 +35,24 @@ package Animal {
             : "$either без имени";           # it's a class, return generic
     }
 
+
+    our %REGISTRY;
     sub named {
-        my $class = shift;
+        ref(my $class = shift) and croak 'class only';
+        #my $class = shift;
         my $name = shift;
         my $self = { Name => $name, Color => $class->default_color };
         bless $self, $class;
+        $REGISTRY{$self} = $self;
+        weaken($REGISTRY{$self});
+        $self;
+
+        # ## начало нового программного кода...
+        # my ($fh, $filename) = tempfile( );
+        # $self->{temp_fh} = $fh;
+        # $self->{temp_filename} = $filename;
+        # ## конец нового программного кода...
+
     }
 
     sub speak {
@@ -81,6 +98,23 @@ package Animal {
         my $self = shift;
         $self->{Height} = shift;
         $self;
+    }
+
+    sub registered {
+        no strict 'refs';
+        my $self = shift;
+        #p %REGISTRY;
+        return map { 'экземпляр '.ref($_)." с именем ".$_->name }  values %REGISTRY;
+    }
+
+    ## в классе Animal
+    sub DESTROY {
+    my $self = shift;
+        # my $fh = $self->{temp_fh};
+        # close $fh;
+        # #say $self->{temp_filename};
+        # unlink $self->{temp_filename};
+    print '[объект ', $self->name, " уничтожен.]\n";
     }
 
 

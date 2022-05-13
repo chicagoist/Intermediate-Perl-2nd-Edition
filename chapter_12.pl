@@ -90,9 +90,9 @@ $tv_horse = Horse->named('мистер Эд')->set_color('серый')->set_age(
 # print $tv_horse->color."\n";
 # $tv_horse->set_color('черный с белыми пятнами');
 #
-# print $lost->{Name}."\n";
-# print $lost->name."\n";
-# print $lost->{Color}."\n";
+print $lost->{Name}."\n";
+print $lost->name."\n";
+print $lost->{Color}."\n";
 # print $tv_horse->default_color."\n";
 # print $tv_horse->color."\n";
 # print $tv_horse->{Color}."\n";
@@ -101,4 +101,6 @@ $tv_horse = Horse->named('мистер Эд')->set_color('серый')->set_age(
 
 print "\n\n# Что возвращать \n\n";
 
-
+{
+    $tv_horse->DESTROY;
+}
