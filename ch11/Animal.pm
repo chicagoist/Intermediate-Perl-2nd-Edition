@@ -1,124 +1,53 @@
-use v5.10;
-
 package Animal {
+    use v5.10;
+    use FindBin qw($Bin);
+    use lib "$Bin";# в подкаталоге
     our $VERSION = '0.01';
-    use parent qw(LivingCreature);
-    use Scalar::Util qw(weaken);
-    use Carp qw(croak);
-
-
-    use File::Temp qw(tempfile);
+    # use CGI;
+    # use POSIX;
+    # use Encode qw(decode_utf8);
+    # use Encode qw(decode encode);
+    #= BEGIN{@ARGV=map Encode::decode(#\$_,1),@ARGV;}
+    # BEGIN{@ARGV = map decode_utf8(#\$_, 1), @ARGV;}
+    # use open qw(:std :encoding(UTF-8));
     use utf8::all 'GLOBAL';
+    # use Encode::Locale;
+    # use Encode;
+    # use diagnostics;
     use strict;
     use warnings FATAL => 'all';
+    use autodie qw(:all);
     use utf8;
     binmode(STDIN, ':utf8');
     binmode(STDOUT, ':utf8');
+    use Data::Dumper;
     use Bundle::Camelcade;# for Intellij IDEA
+    use YAML;
     use DDP;
 
-    # sub speak {
-    #     my $class = shift;
-    #     #p $class;
-    #     die "animals can't talk!" if @_;
-    #     $class->SUPER::speak;
-    #}
+    #use Moose;
+    use Moose::Role;
+    use Moose::Util::TypeConstraints;
+    use namespace::autoclean;
 
-    # sub speak {
-    #     my $either = shift;
-    #     print $either->name, ' goes ', $either->sound, "\n";
-    # }
+    requires qw(sound default_color);
 
-    sub name {
-        my $either = shift;
-        ref $either ? $either->{Name}                # it's an instance, return name
-            : "$either без имени";           # it's a class, return generic
-    }
+    enum 'ColorStr' => [qw( white brown black grey spotted)];
+
+    has 'name' => (is => 'rw');
+    has 'color' => (
+        is => 'ro',
+        isa => 'ColorStr',
+        writer => '_private_set_color',
+        default => sub { shift->default_color }
+    );
 
 
-    our %REGISTRY;
-    sub named {
-        ref(my $class = shift) and croak 'class only';
-        #my $class = shift;
-        my $name = shift;
-        my $self = { Name => $name, Color => $class->default_color };
-        bless $self, $class;
-        $REGISTRY{$self} = $self;
-        weaken($REGISTRY{$self});
-        $self;
-
-        # ## начало нового программного кода...
-        # my ($fh, $filename) = tempfile( );
-        # $self->{temp_fh} = $fh;
-        # $self->{temp_filename} = $filename;
-        # ## конец нового программного кода...
-
-    }
 
     sub speak {
-        my $either = shift;
-        #say $either->sound;
-        $either->name. ' goes '. $either->sound;
-    }
-
-    sub eat {
-        my $either = shift;
-        my $food = shift;
-        print $either->name, " ест $food.\n";
-    }
-
-    sub sound {
-        die "all Animals should define a sound";
-    }
-
-    ## в классе Animal
-    sub default_color {
-        'коричневый';
-    }
-
-    ## в классе Animal
-    sub color {
         my $self = shift;
-       ref $self ? $self->{Color} : $self->default_color;
+        print $self->name, " goes ", $self->sound, "\n";
     }
 
-    sub set_color {
-        my $self = shift;
-        $self->{Color} = shift;
-        $self;
     }
-
-    sub set_age {
-        my $self = shift;
-        $self->{Age} = shift;
-        $self;
-    }
-
-    sub set_height {
-        my $self = shift;
-        $self->{Height} = shift;
-        $self;
-    }
-
-    sub registered {
-        no strict 'refs';
-        my $self = shift;
-        #p %REGISTRY;
-        return map { 'экземпляр '.ref($_)." с именем ".$_->name }  values %REGISTRY;
-    }
-
-    ## в классе Animal
-    sub DESTROY {
-    my $self = shift;
-        # my $fh = $self->{temp_fh};
-        # close $fh;
-        # #say $self->{temp_filename};
-        # unlink $self->{temp_filename};
-    print '[объект ', $self->name, " уничтожен.]\n";
-    }
-
-
-
-
-    1;
-}
+1;

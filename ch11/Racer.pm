@@ -1,4 +1,4 @@
-package Mouse {
+package Racer {
     use v5.10;
     use FindBin qw($Bin);
     use lib "$Bin"; # в подкаталоге
@@ -25,17 +25,27 @@ package Mouse {
     use YAML;
     use DDP;
 
-    use Moose;
+    use Moose::Role;
     use namespace::autoclean;
 
-    with 'Animal';
-    sub default_color { 'white' }
-    sub sound { 'squeak' }
+    has $_ => (is => 'rw', default => 0)foreach qw(wins places shows losses);
 
-    after 'speak' => sub {
-        print "[but you can barely hear it!]\n";
-    };
+    sub won    { my $self = shift; $self->wins($self->wins + 1) }
+    sub placed { my $self = shift; $self->places($self->places + 1) }
+    sub showed { my $self = shift; $self->shows($self->shows + 1) }
+    sub lost   { my $self = shift; $self->losses($self->losses + 1) }
 
-    __PACKAGE__->meta->make_immutable;
+    sub standings {
+        my $self = shift;
+        join ", ", map { $self->$_ . " $_" } qw(wins places shows losses);
+    }
+
+    requires qw(name);
+
+    sub UNIVERSAL::fandango {
+       # warn 'объект ', shift, " может станцевать фанданго!\n";
+        goto &standings;
+    }
+    #__PACKAGE__->meta->make_immutable;
 }
 1;

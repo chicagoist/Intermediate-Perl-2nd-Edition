@@ -1,7 +1,7 @@
-package Cow {
+package MyDate {
     use v5.10;
     use FindBin qw($Bin);
-    use lib "$Bin";# в подкаталоге
+    use lib "$Bin"; # в подкаталоге
     our $VERSION = '0.01';
     # use CGI;
     # use POSIX;
@@ -21,17 +21,12 @@ package Cow {
     binmode(STDIN, ':utf8');
     binmode(STDOUT, ':utf8');
     use Data::Dumper;
-    use Bundle::Camelcade;# for Intellij IDEA
+    use Bundle::Camelcade; # for Intellij IDEA
     use YAML;
     use DDP;
 
-    use Moose;
-    use namespace::autoclean;
+    use Carp qw(croak);
 
-    with 'Animal';
-    sub default_color { 'spotted' }
-    sub sound { 'moooooo' }
 
-    __PACKAGE__->meta->make_immutable;
 }
 1;

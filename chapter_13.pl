@@ -126,6 +126,11 @@ print "\n\n# Вторичная переработка\n\n";
 # print Animal->registered;
 # print "Список животных, оставшихся в живых по выходе из блока:\n", map(" $_\n", Animal->registered);
 # print "Конец программы.\n";
-my $runner = RaceHorse->named('Billy');
+my $runner = RaceHorse->new(name => 'Billy');
 $runner->won;
+$runner->won;
+$runner->won;
+$runner->placed;
+$runner->lost;
+
 print $runner->name, ' занял мест ', $runner->standings, ".\n";
