@@ -27,6 +27,49 @@ package MyDate {
 
     use Carp qw(croak);
 
+    sub new {
+        my $self = shift;
+        bless [], $self;
+    }
+
+    sub AUTOLOAD {
+        our $AUTOLOAD;
+        my ($sec, $min, $hour, $day, $mon, $yr, $dow) = localtime;
+
+        # say $AUTOLOAD;
+        (my $method = $AUTOLOAD) =~ s/.*:://s; # remove package name
+
+        if ($method eq "day") {
+            eval q{ sub day { return $day;  } };
+            die $@ if $@;
+            goto &day;
+        }
+        elsif ($method eq "month") {
+            eval q{ sub month { return $mon + 1; } };
+            die $@ if $@;
+            goto &month;
+        }
+        elsif ($method eq "year") {
+            eval q{ sub year { return $yr + 1900; } };
+            die $@ if $@;
+            goto &year;
+        }
+        else {
+            croak ref $_[0]," does not know how to $method\n";
+        }
+    }
+
+    sub UNIVERSAL::debug {
+        my $self = shift;
+        my $time = localtime();
+
+        print "[$time] @_ \n";
+
+    }
+
+    sub DESTROY {
+        shift;
+    }
 
 }
 1;
