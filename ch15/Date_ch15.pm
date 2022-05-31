@@ -1,7 +1,7 @@
 package Date_ch15 {
     use v5.10;
-    use FindBin qw($Bin);
-    use lib "$Bin"; # в подкаталоге
+    # use FindBin qw($Bin);
+    # use lib "$Bin"; # в подкаталоге
     our $VERSION = '0.01';
     # use CGI;
     # use POSIX;

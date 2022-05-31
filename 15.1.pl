@@ -44,9 +44,7 @@ use Cwd;
 use Date_ch15 qw(:all);
 
 my $date_ch15 = Date_ch15->new();
-# print "Name of day: ",$date_ch15->number_to_day_name(5),"\n";
-# print "Name of month: ",$date_ch15->number_to_mon_name(6),"\n";
-# print $date_ch15->today."\n";
+
 print "Name of day: ",number_to_day_name(5),"\n";
 print "Name of month: ",number_to_mon_name(6),"\n";
 print today()."\n";
