@@ -25,6 +25,8 @@ package Date_ch15 {
     use YAML;
     use DDP;
 
+    use Carp qw(croak);
+
     # use Moose;
     # use namespace::autoclean;
     #

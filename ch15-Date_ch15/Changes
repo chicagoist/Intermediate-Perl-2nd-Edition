@@ -1,0 +1,6 @@
+Revision history for Perl extension ch15::Date_ch15.
+
+0.01  Wed Jun  1 15:34:43 2022
+	- original version; created by h2xs 1.23 with options
+		-XAn ch15::Date_ch15
+
