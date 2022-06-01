@@ -67,9 +67,9 @@ package Date_ch15 {
 
     sub number_to_mon_name {
         #my $self = shift;
-        my $num = shift;
-        $num -= 1;
-        die $num + 1, " is not a valid month number" unless $num >= 0 and $num <= 11;
+        my $num_month = shift;
+        my $num = $num_month - 1;
+        die $num_month , " is not a valid month number" unless $num >= 0 and $num <= 11;
         return $month[$num];
     }
 
@@ -86,6 +86,31 @@ package Date_ch15 {
         my $date_today = localtime()."\n";
         return $date_today;
     }
+
+    sub AUTOLOAD {
+        my $self = shift;
+        my $arg = shift;
+        our $AUTOLOAD;
+        my ($sec, $min, $hour, $day, $mon, $yr, $dow) = localtime;
+
+        # say $AUTOLOAD;
+        (my $method = $AUTOLOAD) =~ s/.*:://s; # remove package name
+
+        if ($method eq "day") {
+            eval q{ sub day { return number_to_day_name($arg);  } };
+            die $@ if $@;
+            goto &day;
+        }
+        elsif ($method eq "month") {
+            eval q{ sub month { number_to_mon_name($arg); } };
+            die $@ if $@;
+            goto &month;
+        }
+
+
+    }
+
+
 
 }
 1;

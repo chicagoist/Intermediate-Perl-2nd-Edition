@@ -46,10 +46,12 @@ use Date_ch15 qw(:all);
 my $date_ch15 = Date_ch15->new();
 
 print "Name of day: ",number_to_day_name(5),"\n";
-print "Name of month: ",number_to_mon_name(6),"\n";
+print "Name of month: ",number_to_mon_name(12),"\n";
 print today()."\n";
 
 print date_10();
+print $date_ch15->day(5), "\n";
+print $date_ch15->month(12), "\n";
 
 =begin text
 

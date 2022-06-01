@@ -67,9 +67,9 @@ package MyDate {
 
     }
 
-    sub DESTROY {
-        shift;
-    }
+    # sub DESTROY {
+    #     shift;
+    # }
 
 }
 1;
