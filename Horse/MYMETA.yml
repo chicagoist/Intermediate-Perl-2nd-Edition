@@ -1,0 +1,22 @@
+---
+abstract: "Perl Ð¼Ð¾Ð´Ñ\x83Ð»Ñ\x8C Ð´Ð»Ñ\x8F Ñ\x80ÐµÑ\x88ÐµÐ½Ð¸Ñ\x8F Ñ\x83Ð¿Ñ\x80Ð°Ð¶Ð½ÐµÐ½Ð¸Ñ\x8F Ð³Ð»Ð°Ð²Ñ\x8B 16"
+author:
+  - 'A. U. Thor <legioner@>'
+build_requires:
+  ExtUtils::MakeMaker: '0'
+configure_requires:
+  ExtUtils::MakeMaker: '0'
+dynamic_config: 0
+generated_by: 'ExtUtils::MakeMaker version 7.62, CPAN::Meta::Converter version 2.150010'
+license: unknown
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: '1.4'
+name: Horse
+no_index:
+  directory:
+    - t
+    - inc
+requires: {}
+version: '0.03'
+x_serialization_backend: 'CPAN::Meta::YAML version 0.018'
