@@ -2,7 +2,7 @@
 
 use 5.10.0;
 
-use FindBin qw($Bin);
+#use FindBin qw($Bin);
 #use lib "$Bin/RaceHorse/lib"; # в подкаталоге
 #use lib "$Bin/Horse/lib"; # в подкаталоге
 #use lib "/home/legioner/Testing/share/perl/5.34.0";
