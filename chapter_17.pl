@@ -31,4 +31,4 @@ use Bundle::Camelcade;# for Intellij IDEA
 use YAML;
 use DDP;
 
-print "\n\t  Основы тестирования\n";
+print "\n\t Основы тестирования\n";
