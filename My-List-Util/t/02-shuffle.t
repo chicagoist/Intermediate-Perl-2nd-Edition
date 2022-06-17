@@ -21,5 +21,14 @@ foreach my $index ( 0 .. $#$tests ) {
 }
 cmp_ok( $same_count, '<', $#$tests,'Различия обнаружены, по крайней мере, в двух позициях');
 
+$tests = [qw(5 5 0)];
+$shuffled = $tests;
+@test_array = $foo->shuffle(@$shuffled);
+$same_count = 0;
+foreach my $index ( 0 .. $#$tests ) {
+    $same_count++ if $test_array[$index] eq $tests->[$index];
+}
+cmp_ok( $same_count, '<', $#$tests,'Различия обнаружены, по крайней мере, в двух позициях');
+
 
 diag( "Testing My::List::Util $My::List::Util::VERSION, Perl $], $^X" );
