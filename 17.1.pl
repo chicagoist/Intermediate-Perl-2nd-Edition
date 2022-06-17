@@ -91,8 +91,15 @@ my $foo = My::List::Util->new();
 #
 #  }
 
+my @tests = (5,6,7);
 print $foo->sum(5, 6, 7),"\n";
-print join(" ",$foo->shuffle(5, 6, 7)),"\n";
+print $foo->sum('a', 6, 7),"\n";
+print join(" ",$foo->shuffle(@tests)),"\n";
+# if (@tests eq ($foo->shuffle(@tests))) {
+#     say $foo->shuffle(@tests);
+#     say @tests;
+#     exit;
+# }
 
 
 
