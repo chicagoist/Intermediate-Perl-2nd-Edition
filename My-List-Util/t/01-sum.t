@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use Test::More 'no_plan';
 
+
 #plan tests => 3;
 
 use My::List::Util;
@@ -20,3 +21,4 @@ ok( $foo->sum() == 0,'Сумма верна 0' ) || print "Bail out!\n";
 ok( $foo->sum('a',2,3) == 5,'Сумма верна 5' ) || print "Bail out!\n";
 
 diag( "Testing My::List::Util $My::List::Util::VERSION, Perl $], $^X" );
+done_testing();

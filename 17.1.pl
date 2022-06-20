@@ -4,6 +4,7 @@ use 5.10.0;
 
 use FindBin qw($Bin);
 use lib "$Bin/My-List-Util/lib/My/List"; # в подкаталоге
+use lib "$Bin/Test-My-List-Util/lib"; # в подкаталоге
 #use lib "$Bin/Horse/lib"; # в подкаталоге
 #use lib "/home/legioner/Testing/share/perl/5.34.0";
 #use lib "$Bin/Animal-Horse-Horse/lib"; # в подкаталоге
@@ -57,52 +58,26 @@ use Cwd;
 # какиенибудь ошибки!
 
 
-use Util qw(:all);
+use Util;
+# use Devel::Cover;
+# use Test::NoWarnings;
+use Test::My::List::Util;
 
+my $bar = Test::Builder->new( );
 my $foo = My::List::Util->new();
 
 
 
-# sub sum {
-#     #my $self = shift;
-#     my $sum_response;
-#     # for (my $i = 0; $i < @_; $i++) {
-#     #     $sum_response += $_[$i];
-#     #
-#     # }
-#     $sum_response += $_ foreach @_;
-#     return $sum_response;
-# }
-#  sub shuffle {
-#      #my $self = shift;
-#      my @random;
-#      my $index = $_[0];
-#
-#      while (@_) {
-#          push(@random, splice(@_, rand @_, 1));
-#      }
-#
-#      while($index == $random[0]) {
-#          push(@random, splice(@random, rand @random, 1));
-#      }
-#
-#      return @random;
-#
-#
-#  }
-
 my @tests = (5,6,7);
 print $foo->sum(5, 6, 7),"\n";
+#print My::List::Util::sum(5, 6, 7),"\n";
+
 print $foo->sum('a', 6, 7),"\n";
 print join(" ",$foo->shuffle(@tests)),"\n";
-# if (@tests eq ($foo->shuffle(@tests))) {
-#     say $foo->shuffle(@tests);
-#     say @tests;
-#     exit;
-# }
-
-
-
+sum_ok($foo->sum(5, 6, 7),18);
+sum_ok($foo->sum(-1,1),0);
+sum_ok($foo->sum(-0,0),0);
+sum_ok($foo->sum(-2,1),-1);
 
 
 =begin text

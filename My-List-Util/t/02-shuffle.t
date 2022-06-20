@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use Test::More 'no_plan';
 
+
 #plan tests => 1;
 use My::List::Util;
 
@@ -32,3 +33,4 @@ cmp_ok( $same_count, '<', $#$tests,'Различия обнаружены, по 
 
 
 diag( "Testing My::List::Util $My::List::Util::VERSION, Perl $], $^X" );
+done_testing();
