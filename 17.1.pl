@@ -74,10 +74,7 @@ print $foo->sum(5, 6, 7),"\n";
 
 print $foo->sum('a', 6, 7),"\n";
 print join(" ",$foo->shuffle(@tests)),"\n";
-sum_ok($foo->sum(5, 6, 7),18);
-sum_ok($foo->sum(-1,1),0);
-sum_ok($foo->sum(-0,0),0);
-sum_ok($foo->sum(-2,1),-1);
+
 
 
 =begin text
